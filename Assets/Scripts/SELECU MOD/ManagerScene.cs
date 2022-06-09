@@ -6,7 +6,7 @@ public class ManagerScene : MonoBehaviour
 {
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);//esto me destruye el primer collider
     }
     internal void LoadScene(int indexScene, bool isAdditive)
     {

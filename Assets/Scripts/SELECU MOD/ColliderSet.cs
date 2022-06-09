@@ -29,7 +29,10 @@ public class ColliderSet : MonoBehaviour
     {
         managerScene = FindObjectOfType<ManagerScene>();
         playerController = FindObjectOfType<PlayerController>();
-        returnButton.onClick.AddListener(()=> OnOffObject(false));
+        if (!isRemoveScene)
+        {
+            returnButton.onClick.AddListener(() => OnOffObject(false)); 
+        }
     }
 
     private void LoadObject()
@@ -41,20 +44,17 @@ public class ColliderSet : MonoBehaviour
 
         if (isLoadScene)
         {
-            playerController.controlEnabled = false;
             managerScene.LoadScene(indexScene, true);            
         }
 
         if (isRemoveScene)
         {
-            managerScene.RemoveScene(2);
-            playerController.controlEnabled = true;
+            managerScene.RemoveScene(2);            
         }
     }
         
     private void OnOffObject(bool isActive)
-    {
-        playerController.controlEnabled = !isActive;
+    {       
         objectOnOff.SetActive(isActive);       
     }
     private void OnTriggerEnter2D(Collider2D collision)
